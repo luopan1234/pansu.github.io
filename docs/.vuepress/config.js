@@ -1,41 +1,36 @@
+const sidebar = require('./config/sidebars')
 module.exports = {
     title: 'Tuling Lab',
-    description: '图灵实验室',
+    description: '用心做技术-实践验真理',
     base: '/',
-    head: [
-        ['link', {rel: 'icon', href: '/img/logo.ico'}],
-        ['link', {rel: 'manifest', href: '/manifest.json'}],
+    // theme: 'reco',
+    head: [['link', {rel: 'icon', href: '/image/favicon.ico'}], ['link', {rel: 'manifest', href: '/manifest.json'}],
     ],
+    plugins: [require('./plugins/router'),],
     themeConfig: {
+        serviceWorker: {
+            updatePopup:true
+        },
+        lastUpdated: '最后更新时间',
         nav: [
-            {text: 'home', link: '/'},
-            {text: 'js', link: '/js/'},
-            {text: 'java', link: '/java/'},
-            {text: 'python', link: '/python/'},
-            // 下拉列表
+            {text: '导航', link: '/guide/'},
             {
-                text: 'select',
-                items: [
-                    {text: 'select1', link: '/select/select1'},
-                    {text: 'select2', link: '/select/select2'}
+                text: '前端大姐',
+                items:[
+                    {
+                        text: 'Node',
+                        items: [
+                            { text: '命令行交互', link: '/passages/2019-05-07-play-node-shell/' },
+                            { text: '测试', link: '/passages/2019-05-04-jest-base/' },
+                            { text: '源码探索', link: '/passages/2019-05-02-node-block-chain/' }
+                        ]
+                    },
                 ]
             },
-            // { text: 'GitHub', link: 'http://liuyukuai.github.io'}
         ],
-        sidebar: {
-            '/': [
-                {
-                    title: '基础',
-                    collapsable: false
-                },
-                {
-                    title: '高级',
-                    collapsable: true,
-                    children: [
-                        '/js/common/test'
-                    ]
-                }
-            ]
-        }
+        navbar: true,
+        displayAllHeaders: true,
+        sidebar,
+        sidebarDepth: 2
     }
 }
